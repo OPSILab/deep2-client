@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- style -->
+    <link rel="stylesheet" href="js/bootstrap-3.3.4-dist/css/bootstrap.css">
+    <style>
+        @media screen and (min-width: 768px) {
+
+            #treemapModal .modal-dialog  {width:900px;}
+
+        }
+    </style>
+    <!-- Js imports -->
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../COMPONENTS/bower_components/webcomponentsjs/webcomponents.js"></script>
+    <script type="text/javascript" src="js/deepClient.js"></script>
+    <script src="js/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+        DATAURL = "http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52&limit=5000";
+        FIELDS  = Array("result,records,Lat","result,records,Lng","result,records,Link");
+
+        jQuery(document).ready(function($) {
+            var leafletjs_params ={
+                component   : "leafletjs-datalet",
+                params      :{
+                    'data-url' : DATAURL,
+                    'fields-order' : "0,1,2"
+                },
+                fields      : FIELDS,
+                placeHolder : "leafletjs_component_place_holder"
+            };
+            ComponentService.deep_url = 'http://service.routetopa.eu/WebComponentsDEV/DEEP/';
+            ComponentService.getComponent(leafletjs_params);
+        });
+    </script>
+</head>
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <h2>Open Data Datalets</h2>
+        <p class="small text-info">In this page you can see several containers with opendata Datalets. To do this the page uses the DEEPCLIENT js library.
+            The only things you have to know is the data source url, the fields that component need to visualize the chart, the componet you want to use and the place holder in witch the component will be
+            injected.
+        </p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> Leaflet Datalet</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="leafletjs_component_place_holder"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

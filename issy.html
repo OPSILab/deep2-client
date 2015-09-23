@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- style -->
+    <link rel="stylesheet" href="js/bootstrap-3.3.4-dist/css/bootstrap.css">
+    <!-- Js imports -->
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../COMPONENTS/bower_components/webcomponentsjs/webcomponents.js"></script>
+    <script src="js/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <h2>Open Data Datalets</h2>
+        <p class="small text-info">In this page you can see several containers with opendata Datalets. To do this the page uses the DEEPCLIENT js library.
+            The only things you have to know is the data source url, the fields that component need to visualize the chart, the componet you want to use and the place holder in witch the component will be
+            injected.
+        </p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> Datatable Datalet</h3>
+                </div>
+                <div class="panel-body">
+                    <link rel="import" href="http://service.routetopa.eu/WebComponentsDEV/COMPONENTS/datalets/datatable-datalet/datatable-datalet.html">
+                    <datatable-datalet data-url="http://data.issy.com/api/records/1.0/search?dataset=liste-des-restaurants-a-issy-les-moulineaux&sort=type&facet=type&facet=terrasse"
+                                       query="$['facet_groups'][?(@.name=='type')]['facets'][*]['name']###$['facet_groups'][?(@.name=='type')]['facets'][*]['count']">
+                    </datatable-datalet>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">3D columnchart Datalet</h3>
+                </div>
+                <div class="panel-body">
+                    <link rel="import" href="http://service.routetopa.eu/WebComponentsDEV/COMPONENTS/datalets/column3Dchart-datalet/column3Dchart-datalet.html">
+                    <column3Dchart-datalet data-url="http://data.issy.com/api/records/1.0/search?dataset=liste-des-restaurants-a-issy-les-moulineaux&sort=type&facet=type&facet=terrasse"
+                                      fields-order="0,1"
+                                      query="$['facet_groups'][?(@.name=='type')]['facets'][*]['name']###$['facet_groups'][?(@.name=='type')]['facets'][*]['count']">
+                    </column3Dchart-datalet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
