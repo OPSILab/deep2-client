@@ -14,19 +14,7 @@ var ComponentService =
             if(request.readyState == 4){
                 try {
                     var resp = JSON.parse(request.response);
-                    var link = '<link rel="import" href="' + resp.bridge_link + resp.component_link + '">';
-                    //Build jsonPath query string
-                    var query     = "";
-                    for(var i=0;i < params.fields.length;i++){
-                        var query_elements = params.fields[i].split(',');
-                        query += "$";
-                        for(var j=0; j < query_elements.length - 1;j++){
-                            query += "['" + query_elements[j] + "']";
-                        }
-                        query += "[*]" + "['" + query_elements[query_elements.length - 1] + "']";
-                        query += "###";
-                    }
-                    query = query.substring(0, query.length - 3);
+                    var link = '<link rel="import" href="' + resp.bridge_link + resp.component_link +'">';
 
                     //Build datalet injecting html code
                     var datalet_code = link + '<' + params.component;
@@ -34,7 +22,7 @@ var ComponentService =
                     for(var i = 0; i < keys.length; i++){
                        datalet_code += ' ' + keys[i] + '="' + params.params[keys[i]] +'"';
                     }
-                    datalet_code += ' query="' + query + '"></' + params.component + '>';
+                    datalet_code += " fields='" + JSON.stringify(params.fields) + "'></" + params.component + ">";
 
                     (params.placeHolder.constructor == HTMLElement || params.placeHolder.constructor == HTMLDivElement) ? $(params.placeHolder).html(datalet_code) :/*Injection from Web Component*/
                                                                  $("#" + params.placeHolder).html(datalet_code);/*Injection from a static web page*/
