@@ -22,7 +22,7 @@ var ComponentService =
                     for(var i = 0; i < keys.length; i++){
                        datalet_code += ' ' + keys[i] + '="' + params.params[keys[i]] +'"';
                     }
-                    datalet_code += " fields='" + JSON.stringify(params.fields) + "'></" + params.component + ">";
+                    datalet_code += " fields='" + JSON.stringify(params.fields) + "'></" + params.component + ">"; 
 
                     (params.placeHolder.constructor == HTMLElement || params.placeHolder.constructor == HTMLDivElement) ? $(params.placeHolder).html(datalet_code) :/*Injection from Web Component*/
                                                                  $("#" + params.placeHolder).html(datalet_code);/*Injection from a static web page*/
