@@ -74,9 +74,9 @@ This is a minimal example of deep client usage.
 We create an empty HTML document with a single DIV. On document ready event we create a datalet_params object, this object contains information for Datalet retrieving and initialization.
 
 datalet_params contains :
-component : the Datalet name to be sent to DEEP (Eg. datatable-datalet)
-params.data-url : the datasource URL (Eg.http://demo.ckan.org/api/action/datastore_search?resource_id=8324a4c9-66d6-47bf-a898-94237cc39b9f&limit=50)
-fields : an array with user selected fields from datasource (Eg. Array("Supplier", "Amount"))
+component : the Datalet name to be sent to DEEP 
+params.data-url : the datasource URL 
+fields : an array with user selected fields from datasource
 placeHolder : the ID of the DOM element where place the Datalet 
 
 ComponentService.getComponent function take a datalet_params object as parameter. This function is responsible for Datalet info retrieving from DEPP and Datalet code retrieving from DEEPCOMPONENTS. Once the Datalet code is available DEEPCLIENT add the Datalet to the document DOM and initialize the Datalet with the data and fields parameters.
