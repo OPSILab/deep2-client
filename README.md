@@ -40,6 +40,7 @@ Send a mail to developers@routetopa.eu
 
 This is a minimal example of deep client usage. 
 
+<code>
 <html>
 <head>
 <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
@@ -49,13 +50,13 @@ This is a minimal example of deep client usage.
 	jQuery(document).ready(function($) {
 	   var datalet_params =
               {
-	      component   : "DATALET_NAME", 
-      params : {
-		data-url        : "DATA_URL",
-      }
-     fields      : Array("FIELD1", "FIELD2"),
-     placeHolder : "HTML_PLACEHOLDER"
-};
+	    component   : "DATALET_NAME", 
+        params : {
+		    data-url        : "DATA_URL",
+        }
+        fields      : Array("FIELD1", "FIELD2"),
+        placeHolder : "HTML_PLACEHOLDER"
+       };
 	   ComponentService.deep_url = 'DEEP_URL';
 	   ComponentService.getComponent(datalet_params);
 
@@ -67,7 +68,7 @@ This is a minimal example of deep client usage.
 <div id="HTML_PLACEHOLDER"></div>
 </body>
 </html>
-
+</code>
 
 We create an empty HTML document with a single DIV. On document ready event we create a datalet_params object, this object contains information for Datalet retrieving and initialization.
 
