@@ -40,7 +40,7 @@ Send a mail to developers@routetopa.eu
 
 This is a minimal example of deep client usage. 
 
-<code>
+```html
 <html>
 <head>
 <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
@@ -69,6 +69,7 @@ This is a minimal example of deep client usage.
 </body>
 </html>
 </code>
+```
 
 We create an empty HTML document with a single DIV. On document ready event we create a datalet_params object, this object contains information for Datalet retrieving and initialization.
 
