@@ -10,14 +10,37 @@
 
     <script>
 
-        ComponentService.deep_url = parent.ODE.deep_url;
+        var datasetsPrato = [
+            {
+                name: 'Consuntivo entrate 2009',
+                url: 'http://ckan.routetopa.eu/api/action/datastore_search?resource_id=07843fc3-07e1-4c66-9be4-fed43ca4a26f&limit=10000',
+            },
+            {
+                name: 'Consuntivo entrate 2010',
+                url: 'http://ckan.routetopa.eu/api/action/datastore_search?resource_id=48a4db73-d3d4-4639-bbc2-9c797d0e6cda&limit=10000',
+            },
+            {
+                name: 'Consuntivo entrate 2011',
+                url: 'http://ckan.routetopa.eu/api/action/datastore_search?resource_id=a14cc2fb-0c24-48d7-9370-834045797d89&limit=10000',
+            },
+            {
+                name: 'Consuntivo entrate 2014',
+                url: 'http://ckan.routetopa.eu/api/action/datastore_search?resource_id=0cb600fc-19ad-4aaf-9794-1e6ea851840a&limit=10000',
+            },
+            {
+                name: 'Consuntivo entrate 2009',
+                url: 'http://ckan.routetopa.eu/api/action/datastore_search?resource_id=07843fc3-07e1-4c66-9be4-fed43ca4a26f&limit=10000',
+            }
+        ]
+
+        ComponentService.deep_url = 'http://192.168.214.128/DEEalerProvider/DEEP/';
         ComponentService.getComponent({
             component : "data-sevc-controllet",
             params :
             {
-                'deep-url' : parent.ODE.deep_url,
-                'datalets-list-url' : parent.ODE.deep_datalet_list,
-                'organization' : parent.ODE.organization
+                'deep-url' : 'http://192.168.214.128/DEEalerProvider/DEEP/',
+                'datalets-list-url' : 'http://192.168.214.128/DEEalerProvider/DEEP/datalets-list',
+                'datasets' : JSON.stringify(datasetsPrato)
             },
             fields : Array(),
             placeHolder : "ode_controllet_placeholder_float"
