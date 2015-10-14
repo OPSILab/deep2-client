@@ -42,7 +42,10 @@
             component   : "linechart-datalet",
             params      :
             {
-                'data-url' : DATAURL
+                'data-url' : DATAURL,
+                'title'    : 'Linechart example',
+                'x-axis-label' : 'x-axis',
+                'y-axis-label' : 'y-axis'
             },
             fields      : FIELDS,
             placeHolder : "linechart_component_place_holder"
@@ -94,9 +97,19 @@
             placeHolder : "treemap_component_place_holder"
         };
 
+        var preview_params = {
+            component   : "preview-datalet",
+            params      :{
+                'data-url' : "http://spod.routetopa.eu/",
+                'url' : "http://spod.routetopa.eu/"
+            },
+            fields      : [],
+            placeHolder : "preview_component_place_holder"
+        };
 
 
-	    ComponentService.deep_url = 'http://192.168.232.128/DEEalerProvider/DEEP/';
+
+	    ComponentService.deep_url = 'http://192.168.214.128/DEEalerProvider/DEEP/';
         ComponentService.getComponent(table_params);
         ComponentService.getComponent(linechart_params);
         ComponentService.getComponent(barchart_params);
@@ -104,6 +117,7 @@
         ComponentService.getComponent(column3dchart_params);
         ComponentService.getComponent(leafletjs_params);
         ComponentService.getComponent(treemap_params);
+        ComponentService.getComponent(preview_params);
 
     });
   </script> 
@@ -190,6 +204,18 @@
               </div>
               <div class="panel-body">
                   <div id="treemap_component_place_holder">
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="col-md-12">
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h3 class="panel-title">Preview Datalet</h3>
+              </div>
+              <div class="panel-body">
+                  <div id="preview_component_place_holder">
                   </div>
               </div>
           </div>
