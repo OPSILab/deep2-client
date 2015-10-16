@@ -24,11 +24,10 @@
  */
 
 
-/** Created by :
- * Luigi Serra - luigser@gmail.com
- * Andrea Petta - andrpet@gmail.com
+/**
+ * Developed by :
+ * ROUTE-TO-PA Project - grant No 645860. - www.routetopa.eu
  *
- * Copyright (c) 2015 Dipartimento di Informatica - Università di Salerno - Italy
  */
 
 var ComponentService =
@@ -51,6 +50,11 @@ var ComponentService =
                     for(var i = 0; i < keys.length; i++){
                        datalet_code += ' ' + keys[i] + '=\'' + params.params[keys[i]] +'\'';
                     }
+
+                    //Deal the fields with "'" char
+                    /*for(var i = 0; i < params.fields.length; i++){
+                       params.fields[i] = params.fields[i].replace(/'/g,"#");
+                    }*/
 
                     datalet_code += " fields='" + JSON.stringify(params.fields) + "'></" + params.component + ">";
 
