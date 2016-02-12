@@ -2,7 +2,7 @@
  @license
  The MIT License (MIT)
 
- Copyright (c) 2015 Dipartimento di Informatica - Università di Salerno - Italy
+ Copyright (c) 2015 Dipartimento di Informatica - Universitï¿½ di Salerno - Italy
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -56,7 +56,7 @@ var ComponentService =
                        params.fields[i] = params.fields[i].replace(/'/g,"#");
                     }*/
 
-                    datalet_code += " fields='" + JSON.stringify(params.fields) + "'></" + params.component + ">";
+                    datalet_code += " fields='" + JSON.stringify(params.fields).replace("'", "&#39;") + "'></" + params.component + ">";
 
                     (params.placeHolder.constructor == HTMLElement || params.placeHolder.constructor == HTMLDivElement) ? $(params.placeHolder).html(datalet_code) :/*Injection from Web Component*/
                                                                  $("#" + params.placeHolder).html(datalet_code);/*Injection from a static web page*/
