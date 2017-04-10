@@ -56,7 +56,8 @@ var ComponentService =
                        params.fields[i] = params.fields[i].replace(/'/g,"#");
                     }*/
 
-                    datalet_code += " fields='" + JSON.stringify(params.fields).replace("'", "&#39;") + "'></" + params.component + ">";
+                    //datalet_code += " fields='" + JSON.stringify(params.fields).replace("'", "&#39;") + "'></" + params.component + ">";
+                    datalet_code += "</" + params.component + ">";
 
                     (params.placeHolder.constructor == HTMLElement || params.placeHolder.constructor == HTMLDivElement) ? $(params.placeHolder).html(datalet_code) :/*Injection from Web Component*/
                                                                  $("#" + params.placeHolder).html(datalet_code);/*Injection from a static web page*/
