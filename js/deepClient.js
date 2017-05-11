@@ -23,7 +23,6 @@
  THE SOFTWARE.
  */
 
-
 /**
  * Developed by :
  * ROUTE-TO-PA Project - grant No 645860. - www.routetopa.eu
@@ -33,45 +32,55 @@
 var ComponentService =
 {
 	deep_url:"",
+    cache:[],
 
-    getComponent: function(params){
+    getComponent: function(params) {
         var request = this.getXMLHttpRequest();
         var component = params.component;
+        var cache = this.cache;
 
-        request.onreadystatechange = function(){
-            if(request.readyState == 4){
+        request.onreadystatechange = function ()
+        {
+            if (request.readyState == 4) {
                 try {
                     var resp = JSON.parse(request.response);
-                    var link = '<link rel="import" href="' + resp.bridge_link + resp.component_link +'">';
-
-                    //Build datalet injecting html code
-                    var datalet_code = link + '<' + params.component;
-                    var keys = Object.keys(params.params);
-                    for(var i = 0; i < keys.length; i++){
-                       datalet_code += ' ' + keys[i] + '=\'' + params.params[keys[i]] +'\'';
-                    }
-
-                    //Deal the fields with "'" char
-                    /*for(var i = 0; i < params.fields.length; i++){
-                       params.fields[i] = params.fields[i].replace(/'/g,"#");
-                    }*/
-
-                    //datalet_code += " fields='" + JSON.stringify(params.fields).replace("'", "&#39;") + "'></" + params.component + ">";
-                    datalet_code += "</" + params.component + ">";
-
-                    (params.placeHolder.constructor == HTMLElement || params.placeHolder.constructor == HTMLDivElement) ? $(params.placeHolder).html(datalet_code) :/*Injection from Web Component*/
-                                                                 $("#" + params.placeHolder).html(datalet_code);/*Injection from a static web page*/
-
-                } catch (e){
+                    var link = '<link rel="import" href="' + resp.bridge_link + resp.component_link + '">';
+                    $('head').append(link);
+                    create_datalet_html_code();
+                } catch (e) {
                     var resp = {
                         status: 'error',
                         data: 'Unknown error occurred: [' + request.response + ']'
                     };
                 }
-            }};
+            }
+        };
 
-        request.open('GET', this.deep_url + component);
-        request.send();
+        var create_datalet_html_code = function()
+        {
+            //Build datalet injecting html code
+            var datalet_code = '<' + params.component;
+            var keys = Object.keys(params.params);
+            for (var i = 0; i < keys.length; i++) {
+                datalet_code += ' ' + keys[i] + '=\'' + params.params[keys[i]] + '\'';
+            }
+
+            datalet_code += "></" + params.component + ">";
+
+            (params.placeHolder.constructor === HTMLElement || params.placeHolder.constructor === HTMLDivElement) ? $(params.placeHolder).html(datalet_code) : /*Injection from Web Component*/
+                $("#" + params.placeHolder).html(datalet_code);/*Injection from a static web page*/
+        };
+
+        if (!cache[this.deep_url + component])
+        {
+            request.open('GET', this.deep_url + component);
+            request.send();
+            cache[this.deep_url + component] = true;
+        }
+        else
+        {
+            create_datalet_html_code();
+        }
     },
 
     getXMLHttpRequest: function ()
@@ -88,4 +97,4 @@ var ComponentService =
             }
         }
     }
-}
+};
