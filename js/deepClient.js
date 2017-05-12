@@ -32,7 +32,6 @@
 var ComponentService =
 {
 	deep_url:"",
-    cache:[],
 
     getComponent: function(params) {
         var request = this.getXMLHttpRequest();
@@ -71,11 +70,10 @@ var ComponentService =
                 $("#" + params.placeHolder).html(datalet_code);/*Injection from a static web page*/
         };
 
-        if (!cache[this.deep_url + component])
+        if (!this.isRegistered(component))
         {
             request.open('GET', this.deep_url + component);
             request.send();
-            cache[this.deep_url + component] = true;
         }
         else
         {
@@ -96,5 +94,9 @@ var ComponentService =
                 return null;
             }
         }
+    },
+
+    isRegistered: function(name) {
+        return document.createElement(name).constructor !== HTMLElement;
     }
 };
