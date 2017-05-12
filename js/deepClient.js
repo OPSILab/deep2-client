@@ -61,7 +61,7 @@ var ComponentService =
             var datalet_code = '<' + params.component;
             var keys = Object.keys(params.params);
             for (var i = 0; i < keys.length; i++) {
-                datalet_code += ' ' + keys[i] + '=\'' + params.params[keys[i]] + '\'';
+                datalet_code += ' ' + keys[i] + '=\'' + params.params[keys[i]].replace(/\'/g, "&#39;") + '\'';
             }
 
             datalet_code += "></" + params.component + ">";
