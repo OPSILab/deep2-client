@@ -32,6 +32,7 @@
 var ComponentService =
 {
 	deep_url:"",
+    cache:[],
 
     getComponent: function(params) {
         var request = this.getXMLHttpRequest();
@@ -70,10 +71,12 @@ var ComponentService =
                 $("#" + params.placeHolder).html(datalet_code);/*Injection from a static web page*/
         };
 
-        if (!this.isRegistered(component))
+        if (!cache[this.deep_url + component])
         {
+            console.log('ciao');
             request.open('GET', this.deep_url + component);
             request.send();
+            cache[this.deep_url + component] = true;
         }
         else
         {
