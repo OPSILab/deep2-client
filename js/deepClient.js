@@ -71,9 +71,10 @@ var ComponentService =
                 $("#" + params.placeHolder).html(datalet_code);/*Injection from a static web page*/
         };
 
+        //if (!this.isRegistered(component))
         if (!cache[this.deep_url + component])
         {
-            console.log('ciao');
+            //console.log('ciao');
             request.open('GET', this.deep_url + component);
             request.send();
             cache[this.deep_url + component] = true;
@@ -100,6 +101,14 @@ var ComponentService =
     },
 
     isRegistered: function(name) {
-        return document.createElement(name).constructor !== HTMLElement;
+        //return document.createElement(name).constructor !== HTMLElement;
+
+        try {
+            document.registerElement(name);
+            return false;
+        } catch(e) {
+            return true;
+        }
+
     }
 };
