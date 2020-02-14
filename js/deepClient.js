@@ -11,10 +11,10 @@
         if(!is_registered(component))
         {
             let type = component.substring(component.lastIndexOf('-')+1, component.length);
-            let link = document.createElement('link');
-            link.setAttribute("rel", "import");
-            link.setAttribute("href", `${window.ComponentService.components_url}${type}s/${component}/${component}.html`);
-            document.getElementsByTagName('head')[0].appendChild(link);
+            let script = document.createElement('script');
+            script.setAttribute("type", "module");
+            script.setAttribute("src", `${window.ComponentService.components_url}${type}s/${component}/${component}.js`);
+            document.getElementsByTagName('head')[0].appendChild(script);
         }
     };
 
