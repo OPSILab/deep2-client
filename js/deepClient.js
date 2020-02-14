@@ -2,11 +2,17 @@
 {
     let getComponent = function(params)
     {
+        create_script(params.component);
+        create_datalet(params);
+    };
+
+    let getComponentHTML = function(params)
+    {
         create_link(params.component);
         create_datalet(params);
     };
 
-    let create_link = function (component)
+    let create_script = function (component)
     {
         if(!is_registered(component))
         {
@@ -15,6 +21,18 @@
             script.setAttribute("type", "module");
             script.setAttribute("src", `${window.ComponentService.components_url}${type}s/${component}/${component}.js`);
             document.getElementsByTagName('head')[0].appendChild(script);
+        }
+    };
+
+    let create_link = function (component)
+    {
+        if(!is_registered(component))
+        {
+            let type = component.substring(component.lastIndexOf('-')+1, component.length);
+            let link = document.createElement('link');
+            link.setAttribute("rel", "import");
+            link.setAttribute("href", `${window.ComponentService.components_url}${type}s/${component}/${component}.html`);
+            document.getElementsByTagName('head')[0].appendChild(link);
         }
     };
 
@@ -47,5 +65,6 @@
     window.ComponentService = {};
     window.ComponentService.components_url = ''; // ODE.deep_components
     window.ComponentService.getComponent = getComponent;
+    window.ComponentService.getComponentHTML = getComponentHTML;
 
 }();
